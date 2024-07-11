@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    max-width: 700px;
+    padding: 20px;
+    margin: 0px auto;
+    position: relative;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fff;
+    height: 600px;
+    box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.233);
+}
+
+.container-1 {
+    padding: 10px;
+    height: 100%;
+}
+
+.container-adicionar {
+    width: 500px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.container-editar {
+    width: 400px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.voltar {
+    padding: 5px;
+    font-size: 15px;
+}
+
+.form-adicionar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 5px;
+    border: 1px solid #575757;
+    border-radius: 5px;
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.233);
+}
+
+.form-adicionar label {
+    width: 100%;
+    align-self: flex-start;
+}
+
+.form-adicionar input {
+    font-size: 15px;
+    padding: 8px;
+    width: 100%;
+}
+
+#img, #nova-img{
+    display: none;
+}
+
+#previw, #edit-previw {
+    width: 190px;
+    height: 190px;
+    cursor: pointer;
+}
+
+.form-butoes {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0px;
+    padding: 2px;
+}
+
+.form-butoes label {
+    padding: 6px;
+    width: 100px;
+}
+
+.container-2 {
+    padding: 10px;
+}
+
+.titulo {
+    margin: 20px 5px;
+    font-size: 1.3rem;
+}
+
+.butao {
+    cursor: pointer;
+    padding: 10px;
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.233);
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #575757;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.butao:hover {
+    color: black;
+    background-color: #e6f0ff;
+    box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.233);
+    transform: scale(1.01, 1.01);
+}
+
+.butao-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.tabela-container {
+    margin-top: 30px;
+    height: 510px;
+    width: 100%;
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.233);
+    overflow-y: scroll;
+}
+
+.tabela {
+    table-layout: auto;
+    width: 100%;
+    font-weight: 100;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+th, td {
+    padding: 3px;
+    font-size: 15px;
+    border: 1px solid black;
+}
+
+th {
+    position: sticky;
+    top: 0px;
+    text-align: left;
+    color: black;
+    background-color: #ffffff;
+}
+
+.linha {
+    cursor: pointer;
+}
+
+.linha:hover {
+    background-color: #becde2;
+}
+
+.selecionado {
+    background-color: #2361d3;
+}
+
+.mais {
+    display: none;
+}
+
+.ativo {
+    display: block;
+    position: absolute;
+    top: 50px;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.479);
+}
+
+.detalhes {
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.479);
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        justify-content: center;
+        margin: auto 0px;
+        padding: 20px;
+    }
+
+    .titulo {
+        margin: 10px 5px;
+    }
+    
+    th, td {
+        padding: 3px;
+        font-size: 12px;
+    }
+
+    .butao-container, .tabela-container{
+        margin-top: 10px;
+    }
+
+    .container-1 {
+        width: 100%;
+        height: 30%;
+    }
+
+    .container-adicionar {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .container-2 {
+        width: 100%;
+        height: 60%;
+    }
+}

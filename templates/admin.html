@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar o Cardápio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <div class="main">
+        <section class="container-1" id="inicial">
+            <h2 class="titulo">Gerenciamento do cardápio</h2>
+            <div class="butao-container">
+                <a class="butao" id="btn-adicionar" href="{{ url_for('admin.add_produto') }}">Adicionar</a>
+            </div>
+        </section>
+        <section class="container-2">
+            <h2 class="titulo">Lista de produtos</h2>
+            <div class="tabela-container">
+                <table class="tabela">
+                    <thead>
+                        <tr class="cabecalho-tabela">
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Sessão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for linha in produtos %}
+                        <tr class="linha" id="{{ linha[0] }}" onclick="clicou('{{ linha[0] }}')">
+                            <td class="dado">{{ linha[0] }}</td>
+                            <td class="dado">{{ linha[1] }}</td>
+                            <td class="dado">{{ linha[2] }}</td>
+                            <td class="dado">{{ linha[3] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% for linha in produtos %}
+            <div class="mais" id="produto-{{ linha[0] }}">
+                <h2>PRODUTO "{{ linha[1] }}"</h2>
+                <div class="detalhes">
+                    <h3>Detalhes:</h3>
+                    <p>id:     {{ linha[0] }}</p>
+                    <p>nome:   {{ linha[1] }}</p>
+                    <p>preço:  {{ linha[2] }}</p>
+                    <p>sessão: {{ linha[3] }}</p>
+                    <p>caminho:{{ linha[4] }}</p>
+                    <img src="{{ url_for('static', filename=linha[4]) }}" alt="img-produto">
+                </div>
+                <div class="btn-container">
+                    <a class="butao" id="voltar-{{ linha[0] }}" href="#">Voltar</a>
+                    <a class="butao" href="{{ url_for('admin.delet_produto', produto_id=linha[0]) }}">Deletar</a>
+                    <a class="butao" href="{{ url_for('admin.edit_produto', produto_id=linha[0]) }}">Editar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

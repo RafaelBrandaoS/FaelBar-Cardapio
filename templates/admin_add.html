@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar o Cardápio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <div class="main">
+        <section class="container-adicionar" id="adicionar">
+            <a href="{{ url_for('admin.admin') }}" class="butao">voltar</a>
+            <form action="{{ url_for('admin.add_update') }}" method="post" enctype="multipart/form-data" class="form-adicionar" autocomplete="off">
+                <h2 class="titulo">Adicionar Novo Produto</h2>
+                <label for="nome">
+                    Nome: <input type="text" id="nome" name="nome" required>
+                </label>
+                <label for="preco">
+                    Preço: <input type="text" id="preco" name="preco" required>
+                </label>
+                <label for="sessao">
+                    Sessão: <input type="text" id="sessao" name="sessao" required>
+                </label>
+                <label for="img" class="img">
+                    Imagem:<input type="file" id="img" name="img" required>
+                </label>
+                <img id="previw" src="{{ url_for('static', filename='imagens/whatsapp.png') }}" alt="imagem!!">
+                <div class="form-butoes">
+                    <a class="butao" href="{{ url_for('admin.admin') }}">Cancelar</a>
+                    <button class="butao" type="submit">Adicionar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+    <script src="{{ url_for('static', filename='imagem.js') }}"></script>
+</body>
+</html>

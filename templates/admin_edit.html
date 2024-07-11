@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar o Cardápio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <div class="main">
+        <section class="container-editar" id="editar">
+            <a class="butao" href="{{ url_for('admin.admin') }}">voltar</a>
+            <form action="{{ url_for('admin.edit_update', produto_id=dados['id']) }}" method="POST" enctype="multipart/form-data" class="form-adicionar" autocomplete="off">
+                <h2 class="titulo">Editando Produto</h2>
+                <label for="novo-nome">
+                    Novo Nome: <input type="text" id="novo-nome" name="novo-nome" value="{{ dados['nome'] }}">
+                </label>
+                <label for="novo-preco">
+                    Novo Preço: <input type="text" id="novo-preco" name="novo-preco" value="{{ dados['preco'] }}">
+                </label>
+                <label for="nova-sessao">
+                    Nova Sessão: <input type="text" id="nova-sessao" name="nova-sessao" value="{{ dados['sessao'] }}">
+                </label>
+                <label for="nova-img" class="img">
+                    Nova Imagem:<input type="file" id="nova-img" name="nova-img">
+                </label>
+                <img id="edit-previw" src="{{ url_for('static', filename=dados['imagem']) }}" alt="imagem!!">
+                <div class="form-butoes">
+                    <a class="butao" href="{{ url_for('admin.admin') }}">voltar</a>
+                    <button class="butao" type="submit">Salvar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+    <script src="{{ url_for('static', filename='imagem.js') }}"></script>
+</body>
+</html>
