@@ -40,17 +40,20 @@ def salvar_dados(imagem, nome, preco, sessao):
 
 
 def salva_imagem(imagem, nome):
-        nome_imagem = imagem.filename
-        estenssao = nome_imagem.split('.')[1]
-        novo_nome = f'{nome}.{estenssao}'
-        
-        destino_final =  f'.\\static\\imagens\\produtos\\{novo_nome}'
-        destino_temp = '.\\temp'
-        
-        save = os.path.join(destino_temp, secure_filename(imagem.filename))
-        imagem.save(save)
-        
-        shutil.move(f'.\\temp\\{nome_imagem}', destino_final)
+        try:
+            nome_imagem = imagem.filename
+            estenssao = nome_imagem.split('.')[1]
+            novo_nome = f'{nome}.{estenssao}'
+            
+            destino_final =  f'.\\static\\imagens\\produtos\\{novo_nome}'
+            destino_temp = '.\\temp'
+            save = os.path.join(destino_temp, secure_filename(imagem.filename))
+            imagem.save(save)
+
+            shutil.move(f'.\\temp\\{nome_imagem}', destino_final)
+        except:
+            erro = 'erro'
+            return erro
 
 
 def pegar_dados(produto_id):

@@ -50,7 +50,11 @@ def edit_update(produto_id):
     imagem = pegar_dados(produto_id)['imagem']
     
     if img:
-        salva_imagem(img, nome)
+        salva = salva_imagem(img, nome)
+        if salva == 'erro':
+            return 'ERRO AO SALVAR A IMAGEM'
+        else:
+            salva_imagem(img, nome)
     atualizar_dados(produto_id, imagem, nome, preco, sessao)
     
     return render_template('edit_sucess.html', nome=nome, func='Editado')
