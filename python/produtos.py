@@ -1,6 +1,5 @@
 from python.conexao import criar_conexao, fechar_conexao
 from werkzeug.utils import secure_filename
-from app import UPLOAD_FOLDER
 import shutil
 import os
 
@@ -44,7 +43,7 @@ def salva_imagem(imagem):
         try:
             nome_imagem = imagem.filename
             
-            destino_final =  UPLOAD_FOLDER
+            destino_final =  '/static/imagens/produtos/'
             save = os.path.join(destino_final, secure_filename(nome_imagem))
             imagem.save(save)
 
