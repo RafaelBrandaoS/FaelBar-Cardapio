@@ -1,5 +1,6 @@
 from python.conexao import criar_conexao, fechar_conexao
 from werkzeug.utils import secure_filename
+from app import UPLOAD_FOLDER
 import shutil
 import os
 
@@ -30,7 +31,7 @@ def salvar_dados(imagem, nome, preco, sessao):
     nome_imagem = imagem.filename
     estenssao = nome_imagem.split('.')[1]
     cursor = con.cursor()
-    img = f'imagens/produtos/{nome}.{estenssao}'
+    img = f'imagens/produtos/{secure_filename(nome_imagem)}'
     sql = "insert into produtos (nome, preco, sessao, img) values (%s, %s, %s, %s)"
     valores = (nome, preco, sessao, img)
     cursor.execute(sql, valores)
@@ -39,18 +40,14 @@ def salvar_dados(imagem, nome, preco, sessao):
     fechar_conexao(con)
 
 
-def salva_imagem(imagem, nome):
+def salva_imagem(imagem):
         try:
             nome_imagem = imagem.filename
-            estenssao = nome_imagem.split('.')[1]
-            novo_nome = f'{nome}.{estenssao}'
             
-            destino_final =  f'.\\static\\imagens\\produtos\\{novo_nome}'
-            destino_temp = '.\\temp'
-            save = os.path.join(destino_temp, secure_filename(imagem.filename))
+            destino_final =  UPLOAD_FOLDER
+            save = os.path.join(destino_final, secure_filename(nome_imagem))
             imagem.save(save)
 
-            shutil.move(f'.\\temp\\{nome_imagem}', destino_final)
         except:
             erro = 'erro'
             return erro
