@@ -47,8 +47,8 @@
                     <p>nome:   {{ linha[1] }}</p>
                     <p>preço:  {{ linha[2] }}</p>
                     <p>sessão: {{ linha[3] }}</p>
-                    <p>caminho:{{ linha[4] }}</p>
-                    <img src="{{ url_for('static', filename=linha[4]) }}" alt="img-produto">
+                    <p>caminho:{{ caminho_imagem }}</p>
+                    <img src="{{ url_for('static', filename=caminho_imagem) }}" alt="img-produto">
                 </div>
                 <div class="btn-container">
                     <a class="butao" id="voltar-{{ linha[0] }}" href="#">Voltar</a>

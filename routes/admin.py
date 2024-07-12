@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, url_for, request, jsonify
+import os
 from python.produtos import lista_produtos, salva_imagem, salvar_dados, pegar_dados, atualizar_dados, deletar
 
 admin_route = Blueprint('admin', __name__)
@@ -7,7 +8,11 @@ admin_route = Blueprint('admin', __name__)
 def admin():
     " html que mostra a lista de produtos e os butões adicionar, editar e deletar produtos "
     produtos = lista_produtos()
-    return render_template('admin.html', produtos=produtos)
+    imagem = produtos[4]
+    imagem.split('/')
+    imagem = imagem.split('/')
+    imagem = os.path.join(imagem[0], imagem[1], imagem[2])
+    return render_template('admin.html', produtos=produtos, caminho_imagem=imagem)
 
 
 @admin_route.route('/adicionar')
