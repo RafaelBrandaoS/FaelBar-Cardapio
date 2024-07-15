@@ -8,11 +8,7 @@ admin_route = Blueprint('admin', __name__)
 def admin():
     " html que mostra a lista de produtos e os butões adicionar, editar e deletar produtos "
     produtos = lista_produtos()
-    imagem = produtos[4]
-    imagem.split('/')
-    imagem = imagem.split('/')
-    imagem = os.path.join(imagem[0], imagem[1], imagem[2])
-    return render_template('admin.html', produtos=produtos, caminho_imagem=imagem)
+    return render_template('admin.html', produtos=produtos)
 
 
 @admin_route.route('/adicionar')
@@ -55,11 +51,11 @@ def edit_update(produto_id):
     imagem = pegar_dados(produto_id)['imagem']
     
     if img:
-        salva = salva_imagem(img)
+        salva = salva_imagem(img, nome)
         if salva == 'erro':
             return 'ERRO AO SALVAR A IMAGEM'
         else:
-            salva_imagem(img)
+            salva_imagem(img, nome)
     atualizar_dados(produto_id, imagem, nome, preco, sessao)
     
     return render_template('edit_sucess.html', nome=nome, func='Editado')
