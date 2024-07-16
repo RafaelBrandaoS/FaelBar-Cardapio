@@ -28,9 +28,22 @@ section {
     box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.233);
 }
 
+.erro {
+    color: rgb(194, 27, 27);
+    font-size: 12px;
+}
+
 .container-1 {
     padding: 10px;
     height: 100%;
+}
+
+.container-login {
+    width: 450px;
+    align-items: flex-start;
+    gap: 10px;
+    height: 100%;
+    padding: 10px;
 }
 
 .container-adicionar {
@@ -49,6 +62,8 @@ section {
     padding: 5px;
     font-size: 15px;
 }
+
+
 
 .form-adicionar {
     width: 100%;
@@ -198,6 +213,13 @@ th {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.479);
     margin: 10px 0px;
     padding: 10px;
+    width: 350px;
+}
+
+.produto-img {
+    width: 250px;
+    height: 250px;
+    margin: 0px 40px;
 }
 
 .btn-container {

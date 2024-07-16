@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, url_for
-import os
 from python.produtos import lista_produtos, lista_sessoes
 
 home_route = Blueprint('home', __name__)

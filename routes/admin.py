@@ -1,25 +1,60 @@
-from flask import Blueprint, render_template, url_for, request, jsonify
-import os
+from flask import Blueprint, render_template, url_for, request, redirect, flash
 from python.produtos import lista_produtos, salva_imagem, salvar_dados, pegar_dados, atualizar_dados, deletar
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
+LOG_NOME = getenv('LOG_NOME')
+LOG_SENHA = getenv('LOG_SENHA')
+
+logado = False
 
 admin_route = Blueprint('admin', __name__)
 
 @admin_route.route('/')
+def login():
+    " Fazer o login "
+    return render_template('login.html')
+
+
+@admin_route.route('/validar', methods=['POST'])
+def validar():
+    global logado
+    log_nome = request.form.get('log-nome')
+    log_senha = request.form.get('log-senha')
+    
+    if log_nome == LOG_NOME and log_senha == LOG_SENHA:
+        logado = True
+        print('logado')
+        return redirect('/admin/adm')
+    else:
+        flash('ERRO! USUARIO OU SENHA INVALIDA')
+        print('erro!')
+        return redirect('/admin')
+
+@admin_route.route('/adm', methods=['GET', 'POST'])
 def admin():
     " html que mostra a lista de produtos e os butões adicionar, editar e deletar produtos "
-    produtos = lista_produtos()
-    return render_template('admin.html', produtos=produtos)
+    if logado == True:
+        produtos = lista_produtos()
+        return render_template('admin.html', produtos=produtos)
+    if logado == False:
+        return redirect('/admin')
 
 
 @admin_route.route('/adicionar')
 def add_produto():
     " formulário para adicionar novo produto "
-    return render_template('admin_add.html')
+    if logado == True:
+        return render_template('admin_add.html')
+    else:
+        return redirect('/admin')
 
 
 @admin_route.route('/adicionar/update', methods=['POST'])
 def add_update():
     " adiconar novo produto ao banco de dados "
+    
     nome = request.form.get('nome')
     preco = request.form.get('preco')
     sessao = request.form.get('sessao')

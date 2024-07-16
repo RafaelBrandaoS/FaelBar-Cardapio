@@ -1,8 +1,7 @@
 from python.conexao import criar_conexao, fechar_conexao
 from werkzeug.utils import secure_filename
-import os
-import shutil
-
+from os import path, unlink
+from shutil import move
 
 def lista_produtos():
     con = criar_conexao()
@@ -44,12 +43,12 @@ def salva_imagem(imagem, nome):
             nome_imagem = imagem.filename
             est = nome_imagem.split('.')[1]
             
-            save = os.path.join('temp', secure_filename(nome_imagem))
+            save = path.join('temp', secure_filename(nome_imagem))
             imagem.save(save)
             
-            destino_final = os.path.join('static', 'imagens', 'produtos', f'{nome}.{est}')
+            destino_final = path.join('static', 'imagens', 'produtos', f'{nome}.{est}')
             
-            shutil.move(save, destino_final)
+            move(save, destino_final)
             
         except:
             erro = 'erro'
@@ -86,4 +85,4 @@ def deletar(produto_id, imagem=''):
     cursor.close()
     con.commit()
     fechar_conexao(con)
-    os.unlink(imagem)
+    unlink(imagem)
